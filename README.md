@@ -14,6 +14,7 @@ Setting up git
 
     git config --global user.name 'your.user.name'
     git config --global user.email 'some.email@example.com'
+    git config --global push.default simple
 
 Usual command chain to upload your modifications:
 
