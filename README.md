@@ -9,6 +9,9 @@ This projects reuses a javascript tetris game implementationnamed jsTetris, made
     git clone https://github.com/mathieucaroff/cojsTetris.git
     cd cojsTetris
     git clone https://github.com/mathieucaroff/jsTetris.git
+    sudo apt-get install libmicrohttpd-dev
+
+If you want to have the source files locally:
     git clone https://gnunet.org/git/libmicrohttpd.git
     cd libmicrohttpd
     sudo apt-get install texinfo
