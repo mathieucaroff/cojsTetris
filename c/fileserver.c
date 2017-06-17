@@ -75,7 +75,7 @@ ahc_echo (void *cls,
       char *path = calloc(1 + strlen(DOCUMENT_ROOT) + strlen(url), sizeof(char));
       strcat(path, DOCUMENT_ROOT);
       strcat(path + strlen(path), url);
-      fd = open (path, O_RDONLY);
+      fd = open(path, O_RDONLY);
     }
   if (-1 != fd)
     {
