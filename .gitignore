@@ -59,3 +59,5 @@ jsTetris
 www
 # IDE-specific files
 *.kdev4
+# Compilation files
+bin tmp

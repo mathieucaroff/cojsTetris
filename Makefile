@@ -8,14 +8,13 @@ LDLIBS = -lmicrohttpd
 BINARIES = fileserver
 DIRECTORIES = tmp www
 
-EXISTING_BINARIES != ls $(BINARIES) 2>/dev/null
-
 all: $(foreach binary, $(BINARIES), bin/$(binary)) www test
 
 test: bin/fileserver
 	bin/fileserver 8888
 
 clean: clean-tmp
+clean-all: clean-tmp clean-bin
 
 clean-tmp:
 ifeq "$(shell ls -d tmp 2> /dev/null)" "tmp"
