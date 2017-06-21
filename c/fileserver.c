@@ -90,13 +90,13 @@ int testURL( const char *url) {
 						tabID[1] = 0 ; 
 						id = "2" ; 
 						}
-					else spurl=0 ; 
+					else spurl=3 ; 
 				}
 				sem_post(&sem_id) ;
 			}
-	
-	return spurl ; 
 	}
+	return spurl ; 
+	
 }
 
 static int
@@ -108,6 +108,7 @@ ahc_echo (void *cls,
           const char *upload_data,
 	  size_t *upload_data_size, void **ptr)
 {
+	printf("%s \n", url) ; 
   static int aptr;
   struct MHD_Response *response;
   int ret;
@@ -141,6 +142,18 @@ ahc_echo (void *cls,
 	      ret = MHD_queue_response (connection, MHD_HTTP_OK, response);
 	      MHD_destroy_response (response);
 	}
+if (spurl == 3 ) {
+			char* page = "503 : Service Unavailable" ; 
+			int length = strlen(page) ;
+      enum MHD_ResponseMemoryMode mode = MHD_RESPMEM_PERSISTENT;
+      response = MHD_create_response_from_buffer (length, (void *) page,mode);
+	    if (NULL == response)
+			{
+		  return MHD_NO;
+			}
+	    ret = MHD_queue_response (connection, MHD_HTTP_BAD_REQUEST, response);
+	    MHD_destroy_response (response);
+	}	
 	if (spurl == 0 ) {
 			int length = strlen("") ;
 			char* page = "" ; 
