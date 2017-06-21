@@ -38,6 +38,11 @@ Usual command chain to upload your modifications:
     git pull
     git push
 
+Go back to specific point (commit) in log:
+
+    git log # Displays the lasts commits
+    git checkout <commit-id>
+
 Undo the last commit:
 
     git reset HEAD~

@@ -2,6 +2,7 @@
 
 CC = gcc
 CFLAGS = -g
+LDFLAGS = -pthread
 LDLIBS = -lmicrohttpd
 
 
@@ -33,7 +34,7 @@ $(foreach binary, $(BINARIES), tmp/$(binary).o: tmp c/$(binary).c; $(CC) $(CFLAG
 
 # Recipe to make bin files from .o files:
 #bin/fileserver: tmp/fileserver.o; $(BIN_FROM_O_COMPILE)
-$(foreach binary, $(BINARIES), bin/$(binary): bin tmp/$(binary).o; $(CC) $(CFLAGS) tmp/$(binary).o $(LDLIBS) -o $$@)
+$(foreach binary, $(BINARIES), bin/$(binary): bin tmp/$(binary).o; $(CC) $(CFLAGS) tmp/$(binary).o $(LDFLAGS) $(LDLIBS) -o $$@)
 
 
 # Recipe to make direcories
