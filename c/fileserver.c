@@ -249,5 +249,7 @@ main (int argc, char *const *argv)
     return 1;
   (void) getc (stdin);
   MHD_stop_daemon (d);
+	sem_destroy(&sem_data) ; 
+	sem_destroy(&sem_id) ; 
   return 0;
 }
