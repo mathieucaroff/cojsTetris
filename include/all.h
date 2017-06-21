@@ -9,4 +9,8 @@
 #include <microhttpd.h>
 #include <fcntl.h>
 
+#include <pthread.h>
+#include <semaphore.h>
+#include <time.h>
+
 #include "utils.h"
