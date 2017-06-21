@@ -61,14 +61,14 @@ int testURL( const char *url) {
 			if (1 == starts_with(url , "/!/post/1/")){
 				spurl = 1 ;
 				sem_wait(&sem_data) ; 
-				strcpy(data, url) ; 
+				strcpy(data, url+10) ; 
 				temps1 = clock() ; 
 				sem_post (&sem_data) ; 
 			}
 			if (1 ==starts_with(url, "/!/post/2/")) {
 				spurl = 1 ;
 				sem_wait(&sem_data) ; 
-				strcpy(data, url) ; 
+				strcpy(data, url+10) ; 
 				temps2 = clock() ; 
 				sem_post (&sem_data) ; 
 			}
@@ -108,7 +108,6 @@ ahc_echo (void *cls,
           const char *upload_data,
 	  size_t *upload_data_size, void **ptr)
 {
-	printf("%s \n", url) ; 
   static int aptr;
   struct MHD_Response *response;
   int ret;
