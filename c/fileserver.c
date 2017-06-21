@@ -38,35 +38,41 @@
 #define DATA_BUFFER_SIZE 8000
 #define nbJoueurs 2
 char data[DATA_BUFFER_SIZE] ;
-char* id ; 
+char* id ;
 sem_t sem_data ; 
 sem_t sem_id ; 
 int tabID[nbJoueurs] ;
 clock_t temps1 ; 
-clock_t temps2 ; 
+clock_t temps2 ;
+
+int starts_with(const char *a, const char *b)
+{
+   if(strncmp(a, b, strlen(b)) == 0) return 1;
+   return 0;
+} 
 
 int testURL( const char *url) {
 	int spurl = -1; 
-	if (strncmp(url, "/!/", 3)) {
+	if (strncmp(url, "/!/", 3) ==  0 ) {
 		spurl = 0 ; 
-			if (url == strstr(url , "/!/get")) {
+			if (1 == starts_with(url , "/!/get")) {
 				spurl = 1 ; 
 			}
-			if (url == strstr(url , "/!/post/1/")){
+			if (1 == starts_with(url , "/!/post/1/")){
 				spurl = 1 ;
 				sem_wait(&sem_data) ; 
 				strcpy(data, url) ; 
 				temps1 = clock() ; 
 				sem_post (&sem_data) ; 
 			}
-			if (url ==strstr(url, "/!/post/2/")) {
+			if (1 ==starts_with(url, "/!/post/2/")) {
 				spurl = 1 ;
 				sem_wait(&sem_data) ; 
 				strcpy(data, url) ; 
 				temps2 = clock() ; 
 				sem_post (&sem_data) ; 
 			}
-			if (url == strstr(url, "/!/newid")) {
+			if (1 == starts_with(url, "/!/newid")) {
 				spurl = 2 ; 
 				sem_wait(&sem_id) ; 
 				if (((clock()-temps1)/CLOCKS_PER_SEC) > 90) { // Check of the activity of the two players
@@ -144,7 +150,7 @@ ahc_echo (void *cls,
 			{
 		  return MHD_NO;
 			}
-	    ret = MHD_queue_response (connection, MHD_HTTP_OK, response);
+	    ret = MHD_queue_response (connection, MHD_HTTP_BAD_REQUEST, response);
 	    MHD_destroy_response (response);
 	}		
 
