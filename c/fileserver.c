@@ -132,6 +132,7 @@ ahc_echo (void *cls,
   int fd;
   struct stat buf;
 	int spurl ; 
+	if (strlen(url)>8000) perror("size url") ; 
 	spurl = testURL(url) ; 
 	if (spurl == 1) {
       enum MHD_ResponseMemoryMode mode = MHD_RESPMEM_PERSISTENT;
