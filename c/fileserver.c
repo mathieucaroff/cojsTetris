@@ -42,8 +42,8 @@ char* id ;
 sem_t sem_data ; 
 sem_t sem_id ; 
 int tabID[nbJoueurs] ;
-clock_t temps1 ; 
-clock_t temps2 ;
+time_t temps1 ; 
+time_t temps2 ;
 
 int starts_with(const char *a, const char *b)
 {
@@ -53,6 +53,7 @@ int starts_with(const char *a, const char *b)
 
 int testURL( const char *url) {
 	int spurl = -1; 
+	time_t temps ;
 	if (strncmp(url, "/!/", 3) ==  0 ) {
 		spurl = 0 ; 
 			if (1 == starts_with(url , "/!/get")) {
@@ -62,43 +63,46 @@ int testURL( const char *url) {
 				spurl = 1 ;
 				if (sem_wait(&sem_data) !=0) perror("sem_wait sem_data") ; 
 				strcpy(data, url+10) ; 
-				temps1 = clock() ; 
+				time(&temps1) ; 
 				if (sem_post (&sem_data) !=0) perror("sem_post sem_data") ; 
 			}
 			if (1 ==starts_with(url, "/!/post/2/")) {
 				spurl = 1 ;
 				if (sem_wait(&sem_data) !=0) perror("sem_wait sem_data") ; 
 				strcpy(data, url+10) ; 
-				temps2 = clock() ; 
+				time(&temps2) ; 
 				if (sem_post (&sem_data) !=0) perror("sem_post sem_data") ; 
 			}
 			if (1 == starts_with(url, "/!/newid")) {
 				spurl = 2 ; 
 				if (sem_wait(&sem_id) !=0) perror("sem_wait sem_id") ;  
-				if (((clock()-temps1)/CLOCKS_PER_SEC) > 10) { // Check of the activity of the two players
+				time(&temps) ; 
+				if ((temps-temps1) > 60) { // Check of the activity of the two players
 					tabID[0] = 1 ;
 					}
-				if (((clock()-temps2)/CLOCKS_PER_SEC) > 10) {
+				if ((temps-temps2) > 60) {
 					tabID[1] = 1 ;
 					}
 				if (tabID[0] !=0) { 
 					tabID[0] = 0 ; 
 					id = "1" ; 
+					time(&temps1) ; 
 				}
 				else  {
 					if (tabID[1] !=0) {
 						tabID[1] = 0 ; 
-						id = "2" ; 
+						id = "2" ; 	
+						time(&temps2) ; 
 						}
 					else spurl=3 ; 
 				}
 				if (sem_post (&sem_id) !=0) perror("sem_post sem_id") ; 
 			}
 			if ( 1 == starts_with(url, "/!/poke/1")) {
-				temps1=clock() ; 
+				time(&temps1) ; 
 			}	
 			if ( 1 == starts_with(url, "/!/poke/2")) {
-				temps2=clock() ; 
+				time(&temps2) ; 
 			}	
 	}
 	return spurl ; 
