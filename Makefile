@@ -37,7 +37,7 @@ $(foreach binary, $(BINARIES), tmp/$(binary).o: tmp c/$(binary).c; $(CC) $(CFLAG
 $(foreach binary, $(BINARIES), bin/$(binary): bin tmp/$(binary).o; $(CC) $(CFLAGS) tmp/$(binary).o $(LDFLAGS) $(LDLIBS) -o $$@)
 
 
-# Recipe to make direcories
+# Recipe to make directories
 tmp:
 ifeq "$(shell ls -d tmp 2> /dev/null)" ""
 	mkdir -p tmp
