@@ -99,12 +99,14 @@ int testURL( const char *url) {
 				if (sem_post (&sem_id) !=0) perror("sem_post sem_id") ; 
 			}
 			if ( 1 == starts_with(url, "/!/poke/1")) {
+				spurl = 2 ; 
 				time(&temps1) ; 
 				if (sem_wait(&sem_id) !=0) perror("sem_wait sem_id") ;  
 				id="";
 				if (sem_post (&sem_id) !=0) perror("sem_post sem_id") ; 				
 			}	
 			if ( 1 == starts_with(url, "/!/poke/2")) {
+				spurl= 2 ; 
 				time(&temps2) ; 
 				if (sem_wait(&sem_id) !=0) perror("sem_wait sem_id") ;  
 				id="";
