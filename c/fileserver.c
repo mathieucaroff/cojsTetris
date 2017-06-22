@@ -60,25 +60,25 @@ int testURL( const char *url) {
 			}
 			if (1 == starts_with(url , "/!/post/1/")){
 				spurl = 1 ;
-				sem_wait(&sem_data) ; 
+				if (sem_wait(&sem_data) !=0) perror("sem_wait sem_data") ; 
 				strcpy(data, url+10) ; 
 				temps1 = clock() ; 
-				sem_post (&sem_data) ; 
+				if (sem_post (&sem_data) !=0) perror("sem_post sem_data") ; 
 			}
 			if (1 ==starts_with(url, "/!/post/2/")) {
 				spurl = 1 ;
-				sem_wait(&sem_data) ; 
+				if (sem_wait(&sem_data) !=0) perror("sem_wait sem_data") ; 
 				strcpy(data, url+10) ; 
 				temps2 = clock() ; 
-				sem_post (&sem_data) ; 
+				if (sem_post (&sem_data) !=0) perror("sem_post sem_data") ; 
 			}
 			if (1 == starts_with(url, "/!/newid")) {
 				spurl = 2 ; 
-				sem_wait(&sem_id) ; 
-				if (((clock()-temps1)/CLOCKS_PER_SEC) > 90) { // Check of the activity of the two players
+				if (sem_wait(&sem_id) !=0) perror("sem_wait sem_id") ;  
+				if (((clock()-temps1)/CLOCKS_PER_SEC) > 10) { // Check of the activity of the two players
 					tabID[0] = 1 ;
 					}
-				if (((clock()-temps2)/CLOCKS_PER_SEC) > 90) {
+				if (((clock()-temps2)/CLOCKS_PER_SEC) > 10) {
 					tabID[1] = 1 ;
 					}
 				if (tabID[0] !=0) { 
@@ -92,7 +92,7 @@ int testURL( const char *url) {
 						}
 					else spurl=3 ; 
 				}
-				sem_post(&sem_id) ;
+				if (sem_post (&sem_id) !=0) perror("sem_post sem_id") ; 
 			}
 			if ( 1 == starts_with(url, "/!/poke/1")) {
 				temps1=clock() ; 

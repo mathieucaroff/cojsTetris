@@ -9,6 +9,7 @@
 #include <microhttpd.h>
 #include <fcntl.h>
 
+#include <pthread.h>
 #include <semaphore.h>
 #include <time.h>
 
@@ -65,4 +66,5 @@ ahc_echo (void *cls,
  * The main must receive 2 arguments. The second one must be the connection point of the server. 
  * @return 1 if the thread wasn't supported
  * @return 0 if success
+ */
 
