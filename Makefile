@@ -9,9 +9,9 @@ LDLIBS = -lmicrohttpd
 BINARIES = fileserver
 DIRECTORIES = tmp www
 
-all: $(foreach binary, $(BINARIES), bin/$(binary)) www test
+all: $(foreach binary, $(BINARIES), bin/$(binary)) www run
 
-test: bin/fileserver
+run: bin/fileserver
 	bin/fileserver 8888
 
 clean: clean-tmp
