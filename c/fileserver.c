@@ -94,6 +94,12 @@ int testURL( const char *url) {
 				}
 				sem_post(&sem_id) ;
 			}
+			if ( 1 == starts_with(url, "/!/poke/1")) {
+				temps1=clock() ; 
+			}	
+			if ( 1 == starts_with(url, "/!/poke/2")) {
+				temps2=clock() ; 
+			}	
 	}
 	return spurl ; 
 	
@@ -142,7 +148,7 @@ ahc_echo (void *cls,
 	      MHD_destroy_response (response);
 	}
 if (spurl == 3 ) {
-			char* page = "503 : Service Unavailable" ; 
+			char* page = "503: Service Unavailable" ; 
 			int length = strlen(page) ;
       enum MHD_ResponseMemoryMode mode = MHD_RESPMEM_PERSISTENT;
       response = MHD_create_response_from_buffer (length, (void *) page,mode);
