@@ -19,6 +19,10 @@ If you want to have the source files locally:
     ./configure
     make
 
+## Use 
+	In order to play at this game, two persons must reach the web page http://124.0.0.1:8888. 
+	If you close your web page, and try to reconnect, you will have to wait 1 minutes since the closure before to get a new id or restart the server. 
+
 ## Git (if you are a collaborator on this repository)
 Install git on Ubuntu:
 
