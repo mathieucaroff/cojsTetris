@@ -6,9 +6,9 @@ This project relies on third-party C code for the http file server: GNU Libmicro
 This projects reuses a javascript tetris game implementationnamed jsTetris, made by Mathieu CAROFF. It may (or may not) be found at the address https://github.com/mathieucaroff/jsTetris/.
 
 ## Installation
-    git clone https://github.com/mathieucaroff/cojsTetris.git
-    cd cojsTetris
-    git clone https://github.com/mathieucaroff/jsTetris.git
+    git clone https://github.com/mathieucaroff/cojsTetris.git && cd cojsTetris
+    git clone https://github.com/mathieucaroff/jsTetris.git && cd jsTetris
+    git checkout cojstetris && cd ../..
     sudo apt-get install libmicrohttpd-dev
 
 If you want to have the source files locally:
