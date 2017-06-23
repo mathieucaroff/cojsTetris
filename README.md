@@ -8,7 +8,7 @@ This projects reuses a javascript tetris game implementationnamed jsTetris, made
 ## Installation
     git clone https://github.com/mathieucaroff/cojsTetris.git && cd cojsTetris
     git clone https://github.com/mathieucaroff/jsTetris.git && cd jsTetris
-    git checkout cojstetris && cd ../..
+    git checkout cojstetris && cd ..
     sudo apt-get install libmicrohttpd-dev
 
 If you want to have the source files locally:
